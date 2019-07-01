@@ -7,16 +7,30 @@ class Authen extends StatefulWidget {
 }
 
 class _AuthenState extends State<Authen> {
+  //Explicit
+  double MyZise = 200;
+
+  //Me mk[;kthod
   Widget showlogo() {
-    return Image.asset(
-      'images/logo.png',
-      fit: BoxFit.contain,
+    return Container(
+      width: MyZise,
+      height: MyZise,
+      child: Image.asset(
+        'images/logo.png',
+        fit: BoxFit.contain,
+      ),
     );
   }
 
   Widget showText() {
-    return Text('Authen');
+    return Text(
+      'Wwow look it That!!!',
+      style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold,color: Colors.pink[800],fontFamily: 'THSarabunBold'
+      )
+  
+    );
   }
+    
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +39,7 @@ class _AuthenState extends State<Authen> {
         padding: EdgeInsets.only(top: 60.0),
         alignment: Alignment.topCenter,
         child: Column(
-          children: <Widget>[
-            showlogo(), 
-            showText()
-            ],
+          children: <Widget>[showlogo(), showText()],
         ),
       ),
     );
