@@ -1,3 +1,4 @@
+import 'package:faiory/screen/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 
@@ -24,7 +25,14 @@ class _AuthenState extends State<Authen> {
         'Sign Up',
         style: TextStyle(color: Colors.pink),
       ),
-      onPressed: () {},
+      onPressed: () {
+        print('You Click Sign UP');
+
+        //create Route
+        //avr=ประกาศopject
+        var registerRoute = MaterialPageRoute(builder: (BuildContext context) => Register());
+        Navigator.of(context).push(registerRoute);
+      },
     );
   }
 
