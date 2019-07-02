@@ -11,27 +11,54 @@ class _AuthenState extends State<Authen> {
   double MyZise = 200;
 
   //Method
+  Widget mySizeBox() {
+    return SizedBox(
+      width: 8.0,
+    );
+  }
+
+  Widget signUpButton() {
+    return RaisedButton(
+      color: Colors.white,
+      child: Text(
+        'Sign Up',
+        style: TextStyle(color: Colors.pink),
+      ),
+      onPressed: () {},
+    );
+  }
 
   Widget signInButton() {
     return RaisedButton(
-      child: Text('Sign In'),onPressed: (){
-        
-      },
+      color: Colors.white,
+      child: Text(
+        'Sign In',
+        style: TextStyle(color: Colors.pink),
+      ),
+      onPressed: () {},
     );
   }
 
   Widget myButton() {
     return Container(
-      width: 220.0,
+      width: MyZise,
       child: Row(
-        children: <Widget>[signInButton(), signInButton()],
+        children: <Widget>[
+          Expanded(
+            child: signInButton(),
+          ),
+          mySizeBox(),
+          Expanded(
+            child: signUpButton(),
+          ),
+        ],
       ),
     );
   }
 
   Widget passwordText() {
     return Container(
-      width: 220.0,
+      width: MyZise,
       child: TextFormField(
         obscureText: true,
         decoration: InputDecoration(
@@ -44,7 +71,7 @@ class _AuthenState extends State<Authen> {
 
   Widget emailText() {
     return Container(
-      width: 220.0,
+      width: MyZise,
       // height: 220.0,
       child: TextFormField(
         keyboardType: TextInputType.emailAddress, //จะมี@เเละ.comมาด้วย
@@ -70,7 +97,7 @@ class _AuthenState extends State<Authen> {
         style: TextStyle(
             fontSize: 36.0,
             fontWeight: FontWeight.bold,
-            color: Colors.pink[800],
+            color: Colors.pink[800], //color
             fontFamily: 'THSarabunBold'));
   }
 
@@ -79,6 +106,11 @@ class _AuthenState extends State<Authen> {
     return Scaffold(
       resizeToAvoidBottomPadding: false, //key board not move
       body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          colors: [Colors.pink[300], Colors.pink[100]],
+          begin: Alignment.topCenter,
+        )), //clors baeutiful
         padding: EdgeInsets.only(top: 60.0),
         alignment: Alignment.topCenter,
         child: Column(
