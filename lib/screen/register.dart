@@ -1,3 +1,5 @@
+import 'package:faiory/screen/mysevices.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as prefix0;
 import 'package:flutter/widgets.dart';
@@ -12,6 +14,7 @@ class _RegisterState extends State<Register> {
   final formkey =
       GlobalKey<FormState>(); //formState=เก็บค่าได้หลายค่าประกาศตัวเเปร
   String nemeString, emailString, passwordString; //ประกาศเพื่อเก็บค่า
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 //Method
   Widget nameText() {
     return TextFormField(
@@ -89,7 +92,61 @@ class _RegisterState extends State<Register> {
           formkey.currentState.save();
           print(
               'Name = $nemeString,Email =$emailString,Password = $passwordString');
+          register();
         }
+      },
+    );
+  }
+
+  Future<void> register() async {
+    await firebaseAuth
+        .createUserWithEmailAndPassword(
+      email: emailString,
+      password: passwordString,
+    )
+        .then((objResponse) {
+      //objres... = virable
+      print('Register Success');
+      setUpDisplayName();
+      //catchError = เช็คemal passwordห้ามซ้ำ
+    }).catchError((objResponse) {
+      print('${objResponse.toString()}');
+      myAlert(objResponse.code.toString(), objResponse.message.toString());
+    });
+  }
+
+  Future<void> setUpDisplayName() async {
+    await firebaseAuth.currentUser().then((response) {
+      UserUpdateInfo updateInfo = UserUpdateInfo();
+      updateInfo.displayName = nemeString;
+      response.updateProfile(updateInfo);
+
+      var servicesRoute =
+            MaterialPageRoute(builder: (BuildContext context) => Mysevices());
+        Navigator.of(context).push(servicesRoute);
+    });
+  }
+
+  void myAlert(String titleString, String messageString) {
+    showDialog(
+      //
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            titleString,
+            style: TextStyle(color: Colors.pink),
+          ),
+          content: Text(messageString),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
       },
     );
   }

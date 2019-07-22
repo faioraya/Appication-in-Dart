@@ -1,6 +1,7 @@
+import 'package:faiory/screen/mysevices.dart';
 import 'package:faiory/screen/register.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Authen extends StatefulWidget {
   @override
@@ -10,8 +11,32 @@ class Authen extends StatefulWidget {
 class _AuthenState extends State<Authen> {
   //Explicit
   double MyZise = 200;
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   //Method
+  @override
+  //ทำงานก่อนเมตอดบิ้ว
+  void initState() {
+    super.initState();
+    chackStatus();
+  }
+
+  Future<void> chackStatus() async {
+    //เก็บเดต้าดึงจากไฟล์เบตมาอีกที
+    FirebaseUser firebaseUser = await firebaseAuth.currentUser();
+
+    if (firebaseUser != null) {
+      moveservices();
+    }
+  }
+
+  void moveservices() {
+    var servicesRoute =
+        MaterialPageRoute(builder: (BuildContext context) => Mysevices());
+    Navigator.of(context)
+        .pushAndRemoveUntil(servicesRoute, (Route<dynamic> route) => false);
+  }
+
   Widget mySizeBox() {
     return SizedBox(
       width: 8.0,
@@ -32,7 +57,8 @@ class _AuthenState extends State<Authen> {
         //avr=ประกาศopject
         var registerRoute =
             MaterialPageRoute(builder: (BuildContext context) => Register());
-        Navigator.of(context).push(registerRoute);
+        Navigator.of(context)
+            .pushAndRemoveUntil(registerRoute, (Route<dynamic> route) => false);
       },
     );
   }
@@ -113,7 +139,8 @@ class _AuthenState extends State<Authen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       //key board not move
+      //key board not move
+      resizeToAvoidBottomPadding: false,
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
