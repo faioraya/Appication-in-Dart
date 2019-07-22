@@ -30,7 +30,8 @@ class _AuthenState extends State<Authen> {
 
         //create Route
         //avr=ประกาศopject
-        var registerRoute = MaterialPageRoute(builder: (BuildContext context) => Register());
+        var registerRoute =
+            MaterialPageRoute(builder: (BuildContext context) => Register());
         Navigator.of(context).push(registerRoute);
       },
     );
@@ -112,15 +113,16 @@ class _AuthenState extends State<Authen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false, //key board not move
+       //key board not move
       body: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-          colors: [Colors.pink[300], Colors.pink[100]],
-          begin: Alignment.topCenter,
+          //gradient ไล่สี
+          colors: [Colors.pink[300], Colors.pink[100]], //ไล่สี
+          begin: Alignment.topCenter, //ไล่ระดับสีว่าควรอยู่ตรงไหน
         )), //clors baeutiful
-        padding: EdgeInsets.only(top: 60.0),
-        alignment: Alignment.topCenter,
+        padding: EdgeInsets.only(top: 100.0), //ห่างจากด้านบน 100
+        alignment: Alignment.topCenter, //อยู่ตรงกลางไม่ว้ายไม่ขวา
         child: Column(
           children: <Widget>[
             showlogo(), //jjjj

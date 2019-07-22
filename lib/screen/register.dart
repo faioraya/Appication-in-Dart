@@ -11,7 +11,7 @@ class _RegisterState extends State<Register> {
 //Explicit
   final formkey =
       GlobalKey<FormState>(); //formState=เก็บค่าได้หลายค่าประกาศตัวเเปร
-      String nemeString,emailString,passwordString;//ประกาศเพื่อเก็บค่า
+  String nemeString, emailString, passwordString; //ประกาศเพื่อเก็บค่า
 //Method
   Widget nameText() {
     return TextFormField(
@@ -29,9 +29,10 @@ class _RegisterState extends State<Register> {
         if (value.isEmpty) {
           return 'Please fill name in Blank';
         }
-      },onSaved: (String value){
-        nemeString=value;
-      },//if you fill up in teh blank will save in to value
+      },
+      onSaved: (String value) {
+        nemeString = value;
+      }, //if you fill up in teh blank will save in to value
     );
   }
 
@@ -49,8 +50,9 @@ class _RegisterState extends State<Register> {
         if (value.length <= 5) {
           return 'Pass much more 6 character';
         }
-      },onSaved: (String value){
-        passwordString=value;
+      },
+      onSaved: (String value) {
+        passwordString = value;
       },
     );
   }
@@ -69,10 +71,10 @@ class _RegisterState extends State<Register> {
       validator: (String value) {
         if (!((value.contains('@')) && (value.contains('.')))) {
           return 'Type Email Format';
-
         }
-      },onSaved: (String value){
-        emailString=value;
+      },
+      onSaved: (String value) {
+        emailString = value;
       },
     );
   }
@@ -85,7 +87,8 @@ class _RegisterState extends State<Register> {
         if (formkey.currentState.validate()) {
           //ถ้้า validateไม่ผิดพลากค่าจะกลายเป้น true เเต่ถ้า ผิด จะขึ้นค่าPlease fill name in Blank
           formkey.currentState.save();
-          print('Name = $nemeString,Email =$emailString,Password = $passwordString');
+          print(
+              'Name = $nemeString,Email =$emailString,Password = $passwordString');
         }
       },
     );
