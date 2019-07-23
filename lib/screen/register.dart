@@ -1,7 +1,7 @@
 import 'package:faiory/screen/mysevices.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart' as prefix0;
+
 import 'package:flutter/widgets.dart';
 
 class Register extends StatefulWidget {
@@ -122,8 +122,8 @@ class _RegisterState extends State<Register> {
       response.updateProfile(updateInfo);
 
       var servicesRoute =
-            MaterialPageRoute(builder: (BuildContext context) => Mysevices());
-        Navigator.of(context).push(servicesRoute);
+          MaterialPageRoute(builder: (BuildContext context) => Mysevices());
+      Navigator.of(context).push(servicesRoute);
     });
   }
 
