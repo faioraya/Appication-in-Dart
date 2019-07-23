@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:faiory/screen/my_map.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'; //ดึงค่าfirebase
 
@@ -113,7 +114,7 @@ class _MysevicesState extends State<Mysevices> {
           'My Sevices',
         ),
       ),
-      body: Text('Body'),
+      body: MyMap(),
       drawer: showDrawmenu(),
     );
   }
