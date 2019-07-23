@@ -111,7 +111,7 @@ class _AuthenState extends State<Authen> {
       child: TextFormField(
         keyboardType: TextInputType.emailAddress, //จะมี@เเละ.comมาด้วย
         decoration: InputDecoration(
-            labelText: 'Email :', hintText: 'lovefirve555@gmail.com'),
+            labelText: 'Email :', hintText: ' '),
       ),
     );
   }
@@ -147,7 +147,8 @@ class _AuthenState extends State<Authen> {
           //gradient ไล่สี
           colors: [Colors.pink[300], Colors.pink[100]], //ไล่สี
           begin: Alignment.topCenter, //ไล่ระดับสีว่าควรอยู่ตรงไหน
-        )), //clors baeutiful
+        )
+        ), //clors baeutiful
         padding: EdgeInsets.only(top: 100.0), //ห่างจากด้านบน 100
         alignment: Alignment.topCenter, //อยู่ตรงกลางไม่ว้ายไม่ขวา
         child: Column(
