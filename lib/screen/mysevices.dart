@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:faiory/screen/my_map.dart';
+import 'package:faiory/screen/show_product.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart'; //ดึงค่าfirebase
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart' as prefix0; //ดึงค่าfirebase
 
 class Mysevices extends StatefulWidget {
   @override
@@ -16,9 +18,49 @@ class _MysevicesState extends State<Mysevices> {
   FirebaseAuth firebaseAuth =
       FirebaseAuth.instance; //instane เพื่อเรียกใช้ firebase
   String nameString = '';
+  Widget myWidget = ShowProduct();
+
   //read firebase
 
   //method
+  Widget menuShowInfo(){
+    return ListTile(
+      leading: Icon(
+        Icons.info,size: 36.0,color: Colors.brown,
+      ),
+      title: Text(
+        'Info',
+        style: TextStyle(fontSize: 18.0),
+      ),
+    );
+  }
+  Widget menuShowMap() {
+    return ListTile(
+      leading: Icon(
+        Icons.map,size: 36.0,color: Colors.blue,
+      ),
+      title: Text(
+        'Map',
+        style: TextStyle(fontSize: 18.0),
+      ),
+    );
+  }
+
+  //widget is medthod return
+  Widget menuProduct() {
+    return ListTile(
+      leading: Icon(
+        Icons.web_asset,
+        size: 36.0,
+        color: Colors.red,
+      ),
+      title: Text(
+        'Show Product',
+        style: TextStyle(fontSize: 18.0),
+      ),
+    );
+  }
+
   Widget signOnAnExit() {
     //icons
     return ListTile(
@@ -43,8 +85,7 @@ class _MysevicesState extends State<Mysevices> {
     //ทำfirebaseก่อน then
     await firebaseAuth.signOut().then((responce) {
       exit(0);
-    }
-    );
+    });
   }
 
   @override
@@ -100,7 +141,11 @@ class _MysevicesState extends State<Mysevices> {
         child: ListView(
       children: <Widget>[
         headmenu(),
+        menuProduct(),
+        menuShowMap(),
+        menuShowInfo(),
         signOnAnExit(),
+        
       ],
     ));
   }
@@ -114,7 +159,7 @@ class _MysevicesState extends State<Mysevices> {
           'My Sevices',
         ),
       ),
-      body: MyMap(),
+      body: myWidget,
       drawer: showDrawmenu(),
     );
   }
