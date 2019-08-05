@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:faiory/screen/my_map.dart';
+import 'package:faiory/screen/show_info.dart';
 import 'package:faiory/screen/show_product.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,31 +20,55 @@ class _MysevicesState extends State<Mysevices> {
       FirebaseAuth.instance; //instane เพื่อเรียกใช้ firebase
   String nameString = '';
   Widget myWidget = ShowProduct();
+  Widget myInfo = ShowInfo();
 
   //read firebase
 
   //method
-  Widget menuShowInfo(){
+  Widget myDivider() {
+    //ห่างเท่าไหร่
+    return Divider(
+      height: 3.0,
+      color: Colors.pink,
+    );
+  }
+
+  Widget menuShowInfo() {
     return ListTile(
       leading: Icon(
-        Icons.info,size: 36.0,color: Colors.brown,
+        Icons.info,
+        size: 36.0,
+        color: Colors.brown,
       ),
       title: Text(
         'Info',
         style: TextStyle(fontSize: 18.0),
-      ),
-    );
+      ),onTap: () {
+          setState(() {
+            myWidget = ShowInfo();
+            Navigator.of(context).pop();
+          });
+        });
+    
   }
+
   Widget menuShowMap() {
     return ListTile(
-      leading: Icon(
-        Icons.map,size: 36.0,color: Colors.blue,
-      ),
-      title: Text(
-        'Map',
-        style: TextStyle(fontSize: 18.0),
-      ),
-    );
+        leading: Icon(
+          Icons.map,
+          size: 36.0,
+          color: Colors.blue,
+        ),
+        title: Text(
+          'Map',
+          style: TextStyle(fontSize: 18.0),
+        ),
+        onTap: () {
+          setState(() {
+            myWidget = MyMap();
+            Navigator.of(context).pop();
+          });
+        });
   }
 
   //widget is medthod return
@@ -58,6 +83,12 @@ class _MysevicesState extends State<Mysevices> {
         'Show Product',
         style: TextStyle(fontSize: 18.0),
       ),
+      onTap: () {
+        setState(() {
+          myWidget = ShowProduct();
+          Navigator.of(context).pop();
+        });
+      },
     );
   }
 
@@ -142,10 +173,13 @@ class _MysevicesState extends State<Mysevices> {
       children: <Widget>[
         headmenu(),
         menuProduct(),
+        myDivider(),
         menuShowMap(),
+        myDivider(),
         menuShowInfo(),
+        myDivider(),
         signOnAnExit(),
-        
+        myDivider(),
       ],
     ));
   }
